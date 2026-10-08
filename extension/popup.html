@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h2>Job Fraud Detector</h2>
+  
+  <div style="background-color: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 15px; border-left: 4px solid #3498db;">
+    <p style="margin: 0; font-size: 14px;">🛡️ <strong>Active:</strong> Scanning job pages automatically.</p>
+  </div>
+  
+  <div id="results">
+    <p style="font-size: 13px; color: #555;">If the AI missed something, you can manually report the current page as a scam.</p>
+    <button id="reportBtn" class="danger-btn">Report Current Page as Scam</button>
+  </div>
+  
+  <p id="loading" class="hidden" style="text-align: center; margin-top: 10px;">Reporting...</p>
+  <p id="errorMsg" class="hidden error"></p>
+  <p id="successMsg" class="hidden" style="color: #2ecc71; text-align: center; font-weight: bold; margin-top: 10px;"></p>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

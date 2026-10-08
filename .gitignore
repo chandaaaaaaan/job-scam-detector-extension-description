@@ -1,0 +1,20 @@
+# Environment / secrets
+backend/.env
+*.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Node modules (Tailwind build deps)
+extension/node_modules/
+extension/tailwindcss.exe
+extension/package-lock.json
+
+# OS
+.DS_Store
+Thumbs.db

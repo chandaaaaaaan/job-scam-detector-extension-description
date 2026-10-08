@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Job / Internship Scam Detector</title>
+    <link href="tailwind.css" rel="stylesheet"/>
+    <style>
+        :root {
+            /* Default to Malicious Red */
+            --theme-color-rgb: 255, 61, 0; 
+            --theme-color-hex: #FF3D00;
+        }
+
+        body.theme-safe {
+            /* Switch to Verified Green */
+            --theme-color-rgb: 0, 230, 118; 
+            --theme-color-hex: #00E676;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #101418;
+            background-image: radial-gradient(circle at 2px 2px, rgba(148, 163, 184, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+            min-height: max(884px, 100dvh);
+        }
+        @keyframes scan {
+            0% { top: -100px; }
+            100% { top: 100vh; }
+        }
+    </style>
+</head>
+<body class="font-body text-on-surface selection:bg-ignition-theme selection:text-white overflow-x-hidden">
+
+    <!-- TopAppBar Navigation Shell -->
+    <nav class="fixed top-0 w-full border-b border-cyan-500/15 bg-slate-950/80 backdrop-blur-xl flex justify-between items-center px-6 h-16 z-50 shadow-[0_0_15px_rgba(0,242,255,0.1)]">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-cyan-400" data-icon="security">security</span>
+            <h1 class="font-headline uppercase tracking-[0.1em] text-sm font-bold text-cyan-400">Job / Internship Scam Detector</h1>
+        </div>
+        <div class="hidden md:flex gap-8 items-center h-full">
+            <a class="text-cyan-400 font-headline uppercase tracking-[0.1em] text-xs font-bold h-full flex items-center border-b-2 border-cyan-400" href="#">ANALYSIS</a>
+        </div>
+
+    </nav>
+
+    <!-- Dynamic Render Target via JS -->
+    <main id="app-root" class="pt-24 pb-32 px-4 md:px-8 max-w-7xl mx-auto relative min-h-screen">
+        <div class="text-center py-20 font-headline text-primary animate-pulse">ANALYZING JOB POSTING...</div>
+    </main>
+
+    <!-- Visual Artifacts -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-50 overflow-hidden">
+        <div class="scan-line" style="animation: scan 8s linear infinite;"></div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="details.js"></script>
+</body>
+</html>

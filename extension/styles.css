@@ -1,0 +1,66 @@
+body { 
+    width: 320px; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    padding: 15px; 
+    color: #333; 
+}
+h2 { 
+    text-align: center; 
+    margin-top: 0; 
+    color: #2c3e50; 
+}
+.hidden { display: none; }
+button { 
+    width: 100%; 
+    padding: 10px; 
+    margin-top: 10px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+.primary-btn { 
+    background-color: #3498db; 
+    color: white; 
+}
+.primary-btn:hover { background-color: #2980b9; }
+
+.danger-btn { 
+    background-color: #e74c3c; 
+    color: white; 
+    margin-top: 15px; 
+}
+.danger-btn:hover { background-color: #c0392b; }
+.danger-btn:disabled { background-color: #95a5a6; cursor: not-allowed; }
+
+.label-box { 
+    padding: 10px; 
+    text-align: center; 
+    font-size: 18px; 
+    font-weight: bold; 
+    border-radius: 5px; 
+    margin-bottom: 10px; 
+    color: white;
+    letter-spacing: 1px;
+}
+.fake-label { background-color: #e74c3c; } /* Red */
+.real-label { background-color: #2ecc71; } /* Green */
+.warning-label { background-color: #f1c40f; color: #333; } /* Yellow */
+
+.error { 
+    color: #e74c3c; 
+    font-size: 14px; 
+    text-align: center; 
+    margin-top: 10px;
+}
+ul { 
+    padding-left: 20px; 
+    font-size: 13px; 
+    margin-top: 5px;
+}
+p {
+    font-size: 14px;
+    margin: 8px 0;
+}

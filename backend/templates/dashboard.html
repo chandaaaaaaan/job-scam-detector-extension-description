@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Shield Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-grad-1: #0f2027;
+            --bg-grad-2: #203a43;
+            --bg-grad-3: #2c5364;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8f9fa;
+            --text-muted: #adb5bd;
+            --accent-red: #ff4757;
+            --accent-green: #2ed573;
+            --accent-blue: #1e90ff;
+            --accent-purple: #9b59b6;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--bg-grad-1), var(--bg-grad-2), var(--bg-grad-3));
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 20px;
+            background: var(--glass-bg);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            letter-spacing: 2px;
+            background: -webkit-linear-gradient(45deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-sub {
+            color: var(--text-muted);
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .stat-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .stat-val {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 10px;
+        }
+
+        .companies-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .company-card {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .company-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 5px; height: 100%;
+            background: var(--accent-red);
+        }
+
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .company-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+            color: #fff;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .badge.high-risk { background: rgba(255, 71, 87, 0.2); color: var(--accent-red); border: 1px solid rgba(255, 71, 87, 0.5); }
+        
+        .company-stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .c-stat {
+            background: rgba(0,0,0,0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .c-stat strong {
+            color: #fff;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .c-roles {
+            font-size: 0.95rem;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .c-reasons h4 {
+            margin: 0 0 10px 0;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        .reason-chip {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            color: #e0e0e0;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin: 0 5px 5px 0;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            background: var(--glass-bg);
+            border-radius: 16px;
+            border: 1px dotted rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛡️ Fraud Shield Analytics</h1>
+            <div class="header-sub">Live Community Scam Reports & Threat Intelligence</div>
+        </header>
+
+        {% set total_reports = scams|length %}
+        {% set unique_companies = companies|length %}
+        {% set avg_risk = 0 %}
+        {% if total_reports > 0 %}
+            {% set total_score = 0 %}
+            {% for s in scams %} 
+                {% set total_score = total_score + s.risk_score %}
+            {% endfor %}
+            {% set avg_risk = (total_score / total_reports)|int %}
+        {% endif %}
+
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <div class="stat-icon">🚩</div>
+                <div class="stat-val" style="color: var(--accent-red);">{{ total_reports }}</div>
+                <span class="stat-label">Total Jobs Flagged</span>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🏢</div>
+                <div class="stat-val" style="color: var(--accent-purple);">{{ unique_companies }}</div>
+                <span class="stat-label">Companies Tracked</span>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⚠️</div>
+                <div class="stat-val" style="color: var(--accent-blue);">{{ avg_risk }}%</div>
+                <span class="stat-label">Avg Risk Score</span>
+            </div>
+        </div>
+
+        <h2 class="section-title">High-Risk Organizations</h2>
+        
+        <div class="companies-list">
+            {% if companies %}
+                {% for comp_name, data in companies.items() %}
+                <div class="company-card">
+                    <div class="company-header">
+                        <h3 class="company-name">{{ comp_name }}</h3>
+                        <span class="badge high-risk">Reported</span>
+                    </div>
+                    
+                    <div class="company-stats">
+                        <div class="c-stat">
+                            <strong>{{ data.reports }}</strong>
+                            Flags
+                        </div>
+                        <div class="c-stat">
+                            <strong>{{ data.avg_score }}%</strong>
+                            Avg Risk
+                        </div>
+                    </div>
+
+                    <div class="c-roles">
+                        <strong>Associated Titles:</strong> {{ data.jobs | join(', ') }}
+                    </div>
+
+                    <div class="c-reasons">
+                        <h4>Identified Red Flags:</h4>
+                        <div>
+                            {% for r in data.reasons %}
+                                <span class="reason-chip">{{ r }}</span>
+                            {% endfor %}
+                            {% if not data.reasons %}
+                                <span class="reason-chip">No specific keywords (Community Reported)</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-state">
+                    <h3>No reports found!</h3>
+                    <p style="color: var(--text-muted)">Your database is currently clean. Flagged jobs will appear here automatically.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
